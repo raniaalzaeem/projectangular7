@@ -15,24 +15,39 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,private manageservice:ManageService) { }
 
   ngOnInit() {
+    this.manageservice.getusers().subscribe(res =>{
+      this.users =  res; 
+      console.log(this.users)
+    })
   }
-  allusers=[]
-  // login(loginForm) : void {
+  users=[]
+  // login(loginForm)  {
 
   //   console.log(loginForm);
   //   let password=loginForm.controls.password.value;
   //   let username=loginForm.controls.username.value;
-  //   this.manageservice.getusers().subscribe(res =>{
-  //     this.allusers =  res.filter(item => {item.username === username && item.password=== password}); 
-  //     console.log(this.allusers)
-  //   })
+  //   console.log(password);
+  //   console.log(username);
 
-  //   if(this.allusers != null){
-  //    this.manageservice.setLogin(true);
-  //    this.router.navigate(["dashbord"]);
+  //   if(this.users != null){
+
+  //     for(let x=0; x< this.users.length ;x++){
+  //       console.log("1");
+
+  //       if(this.users.find(user => user.username === username)){
+  //         console.log("2");
+
+  //         if(this.users.find(user => user.username === username).password == password ){
+  //           console.log("3");
+          
+  //           this.manageservice.setLogin(true);
+  //           this.router.navigate(["dashbord"]);
+  //         }
+  //       }
+  //     }
 
   //   }else {
-  //     alert("Invalid credentials");
+  //     alert("Invalid Username & password");
   //   }
   // }
 
@@ -43,7 +58,7 @@ export class LoginComponent implements OnInit {
      this.router.navigate(["dashbord"]);
 
     }else {
-      alert("Invalid credentials");
+      alert("Invalid Username & password");
     }
   }
 

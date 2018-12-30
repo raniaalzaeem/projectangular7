@@ -7,7 +7,7 @@ import {ManageService} from '../manage.service'
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  LoginObj :boolean=false  ;
+  LoginObj;
   constructor(private router: Router,private manageservice:ManageService) {}
 
   ngOnInit() {

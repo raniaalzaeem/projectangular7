@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient ,HttpParams} from '@angular/common/http';
 import { IProduct } from './Modules/product'
 import { IUser } from './modules/user'
 import { ISetting } from './Modules/setting'
@@ -14,7 +14,7 @@ import { ICat} from './Modules/cat'
 })
 export class ManageService {
 
-  isLogedIn=new Subject<boolean>();
+  isLogedIn=new Subject();
 
   private _url : string ="http://localhost:3000/products";
   private _url1 : string ="http://localhost:3000/catugary";
@@ -78,10 +78,10 @@ export class ManageService {
     //alert("id"+id)
     return this.http.delete<ICat>(`${this._url1}/${id}`)  // delete
   }
-  // public getProductByCatId(catid):Observable<IProduct[]>{
-  //   let httpp = new HttpParams().set('catid',catid);  
-  //   return this.http.get<IProduct[]>(this._url,{params:httpp});
-  //    }
+  public getProductByCatId(catid):Observable<IProduct[]>{
+    let httpp = new HttpParams().set('catid',catid);  
+    return this.http.get<IProduct[]>(this._url,{params:httpp});
+     }
 
   getpost():Observable<IPost[]>{
     //alert("rania2");

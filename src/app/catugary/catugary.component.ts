@@ -96,8 +96,9 @@ export class CatugaryComponent implements OnInit {
   resetForm(myform){
     myform.reset()
   }
-  // showProduct(id){
-  //   this.isActiveViewProduct=!this.isActiveViewProduct;
-  //   this.manageservice.getProductByCatId(id).subscribe(res =>this.allproducts = res )
-  // }
+
+  showProduct(id){
+    this.isActiveViewProduct=!this.isActiveViewProduct;
+    this.manageservice.getProductByCatId(id).subscribe(res =>this.allproducts = res )
+  }
 }
