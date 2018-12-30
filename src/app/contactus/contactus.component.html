@@ -1,0 +1,116 @@
+<app-nav></app-nav>
+<h1 class="txtcenter"> Contact Us  Page </h1>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title> <span class="spancenter"> <span  *ngIf="isActiveEditBtn?'hidden':''"> Add </span><span *ngIf="isActiveEditBtn?'':'hidden'"> Edit </span>  Contact Us Data  </span> </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form  class="example-form" #addForm ="ngForm" (ngSubmit)='addNewSetting(addForm)'>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="id" [(ngModel)]="selectedObjforedit.id" name="id" type="number" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="websit title" [(ngModel)]="selectedObjforedit.websittitle" name="websittitle" type="text" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+            <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="websiturl" [(ngModel)]="selectedObjforedit.websiturl" name="websiturl" type="text" required>
+              </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width">
+                <input matInput placeholder="email" [(ngModel)]="selectedObjforedit.email" name="email" type="email" required>
+                </mat-form-field>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                  <mat-form-field class="example-full-width">
+                  <input matInput placeholder="mobile" [(ngModel)]="selectedObjforedit.mobile" name="mobile" type="number" required>
+                </mat-form-field>
+              </td>
+              <td>
+                  <mat-form-field class="example-full-width">
+                  <input matInput placeholder="tel" [(ngModel)]="selectedObjforedit.tel" name="tel" type="number" required>
+                </mat-form-field>
+              </td>
+
+    </tr>
+    <tr>
+        <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="address" [(ngModel)]="selectedObjforedit.address" name="address" type="text" required>
+            </mat-form-field>
+          </td>
+    </tr>
+    </table>
+    <mat-card-actions>
+        <!-- <button mat-raised-button type="submit"  *ngIf="isActiveEditBtn?'hidden':''" color="primary"> Add  </button> -->
+        <button mat-raised-button type="button" (click) = 'editsettingbtn()' color="primary" > Edit </button>    
+        <button mat-raised-button type="button" (click) = 'resetForm(addForm)' color="primary" >Reset</button>          
+      </mat-card-actions>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card class="example-card cardmargin">
+    <mat-card-header>
+      <mat-card-title> <span class="spancenter"> Manage Contact Us Data </span> </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+          
+          <div >
+            <table>
+              <thead>
+                  <tr class="borderstyle">
+                      <td > ID </td>
+                      <td > websittitle </td>
+                      <td > websiturl </td>
+                      <td > email </td>
+                      <td > mobile </td>
+                      <td > tel </td>
+                      <td > address </td>
+
+                      <td > Edit </td>
+                      <!-- <td > Delete </td> -->
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr class="borderstyle" *ngFor="let contactusdata of contactusdata " >
+                      <td > {{contactusdata.id}} </td>
+                      <td > {{contactusdata.websittitle}} </td>
+                      <td > {{contactusdata.websiturl}} </td>
+                      <td > {{contactusdata.email}} </td>
+                      <td > {{contactusdata.mobile}} </td>
+                      <td > {{contactusdata.tel}} </td>
+                      <td > {{contactusdata.address}} </td>
+                  
+                    
+                      <td>
+                          <button  mat-raised-button type="button"  color="primary" class="marginsty" (click) ='editsetting(contactusdata.id)'>Edit</button>
+
+                      </td>
+                      <!-- <td> 
+                        <button  mat-raised-button type="button" color="primary" class="marginsty" (click) ='deletesetting(contactusdata.id)'>Delete</button>
+                      </td> -->
+                  </tr>
+              </tbody>
+      
+            </table>
+          
+          </div>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+
+

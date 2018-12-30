@@ -1,0 +1,122 @@
+<app-nav></app-nav>
+<h1 class="txtcenter"> Post  Page </h1>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title> <span class="spancenter"> <span  *ngIf="isActiveEditBtn?'hidden':''"> Add </span><span *ngIf="isActiveEditBtn?'':'hidden'"> Edit </span>  Post  </span> </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form  class="example-form" #addForm ="ngForm" (ngSubmit)='addNewPost(addForm)'>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+       
+          <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="id" [(ngModel)]="selectedObjforedit.id" name="id" type="number" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="title" [(ngModel)]="selectedObjforedit.title" name="title" type="text" required>
+            </mat-form-field>
+          </td>
+        </tr>
+
+    
+
+      <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="description" [(ngModel)]="selectedObjforedit.description" name="description" type="text" required> </textarea>
+          </mat-form-field>
+        </td>      
+      </tr>
+    </table>
+    <mat-card-actions>
+        <button mat-raised-button type="submit"  *ngIf="isActiveEditBtn?'hidden':''" color="primary">Add Post </button>
+        <button mat-raised-button type="button" (click) = 'editpostbtn()' color="primary" *ngIf="isActiveEditBtn?'':'hidden'" >Edit Post</button>    
+        <button mat-raised-button type="button" (click) = 'resetForm(addForm)' color="primary" >Reset</button>          
+      </mat-card-actions>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card class="example-card cardmargin">
+    <mat-card-header>
+      <mat-card-title> <span class="spancenter"> Manage All Post </span> </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+          
+          <div >
+            <table>
+              <thead>
+                  <tr class="borderstyle">
+                      <td > ID </td>
+                      <td > Title </td>
+                      <td > Description </td>
+                      <td > View </td>
+                      <td > Edit </td>
+                      <td > Delete </td>
+
+                    
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let row of allpost; " class="borderstyle" >
+                      <td > {{row.id}} </td>
+                      <td > {{row.title}} </td>
+                      <td > {{row.description}} </td>
+                  
+                      <td >
+                         <button  mat-raised-button type="button" color="primary" class="marginsty" (click) ='showItem(row.id)'>View</button>
+                      </td>
+                      <td>
+                          <button  mat-raised-button type="button"  color="primary" class="marginsty" (click) ='editpost(row.id)'>Edit</button>
+
+                      </td>
+                      <td> 
+                        <button  mat-raised-button type="button" color="primary" class="marginsty" (click) ='deletepost(row.id)'>Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+      
+            </table>
+          
+          </div>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card class="example-card cardmargin" *ngIf="isActive?'':'hidden'">
+      <mat-card-header>
+        <mat-card-title> <span class="spancenter"> View Post Details </span> </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+            
+            <div >
+              <table  >
+                <thead>
+                    <tr class="borderstyle">
+                        <td > ID </td>
+                        <td > Title </td>
+                        <td > Description </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="borderstyle">
+                        <td > {{selectedObj.id}} </td>
+                        <td > {{selectedObj.title}} </td>
+                        <td > {{selectedObj.description}} </td>
+                    </tr>
+                </tbody>
+        
+              </table>
+            
+            </div>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      </mat-card-content>
+    </mat-card>
+
+   

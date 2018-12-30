@@ -1,0 +1,88 @@
+{
+  "products": [
+    {
+      "id": 2,
+      "name": "car2",
+      "price": 100,
+      "quantity": 100,
+      "code": "12a",
+      "description": "prduct2",
+      "catid": 1
+    },
+    {
+      "id": "3",
+      "name": "car3",
+      "price": 500,
+      "quantity": 500,
+      "code": "13a",
+      "description": "Text",
+      "catid": 1
+    },
+    {
+      "id": 4,
+      "name": "cat4",
+      "price": 500,
+      "quantity": 100,
+      "code": "1aa",
+      "description": "gggg",
+      "catid": 2
+    }
+  ],
+  "catugary": [
+    {
+      "id": 1,
+      "title": "cat1",
+      "description": "Texthhh"
+    },
+    {
+      "id": 2,
+      "title": "cat2",
+      "description": "Text"
+    },
+    {
+      "id": "3",
+      "title": "cat3",
+      "description": "Text"
+    },
+    {
+      "id": 4,
+      "title": "Post4",
+      "description": "text"
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin"
+    }
+  ],
+  "setting": [
+    {
+      "id": 1,
+      "websittitle": "admin",
+      "websiturl": "admin",
+      "email": "email@enfo.com",
+      "mobile": 123456789,
+      "tel": 2812345,
+      "address": "address"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "post1",
+      "description": "Text"
+    },
+    {
+      "id": 2,
+      "title": "post2",
+      "description": "Text"
+    },
+    {
+      "id": "3",
+      "title": "post3",
+      "description": "Text"
+    }
+  ]
+}

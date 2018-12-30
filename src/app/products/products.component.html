@@ -1,0 +1,166 @@
+<app-nav></app-nav>
+<h1 class="txtcenter"> Product Page </h1>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title> <span class="spancenter"> <span  *ngIf="isActiveEditBtn?'hidden':''"> Add </span><span *ngIf="isActiveEditBtn?'':'hidden'"> Edit </span>  Product </span> </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form  class="example-form" #addForm ="ngForm" (ngSubmit)='addNewProduct(addForm)'>
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+       
+          <td>
+              <mat-form-field class="example-full-width">
+              <input matInput placeholder="id" [(ngModel)]="selectedObjforedit.id" name="id" type="number" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="name" [(ngModel)]="selectedObjforedit.name" name="name" type="text" required>
+            </mat-form-field>
+          </td>
+        </tr>
+
+      <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="quantity" [(ngModel)]="selectedObjforedit.quantity" name="quantity" type="number" required>
+          </mat-form-field>
+        </td>
+        <td>
+            <mat-form-field class="example-full-width">
+            <input matInput placeholder="code" [(ngModel)]="selectedObjforedit.code" name="code" type="text" required>
+          </mat-form-field>
+        </td>
+      </tr>
+
+      <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="description" [(ngModel)]="selectedObjforedit.description" name="description" type="text" required> </textarea>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field class="example-full-width">
+          <input matInput placeholder="price" [(ngModel)]="selectedObjforedit.price" name="price" type="number" required>
+        </mat-form-field>
+      </td>       
+      </tr>
+      <tr>
+          <td>
+              <mat-form-field>
+                <mat-select placeholder="product catugary" [(ngModel)]="selectedObjforedit.catid" name="catid">
+                  <mat-option *ngFor="let cat of allcat" [value]="cat.id">
+                      {{cat.title}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </td>
+           
+          </tr>
+    </table>
+    <mat-card-actions>
+        <button mat-raised-button type="submit"  *ngIf="isActiveEditBtn?'hidden':''" color="primary">Add Product</button>
+        <button mat-raised-button type="button" (click) = 'editproductbtn()' color="primary" *ngIf="isActiveEditBtn?'':'hidden'" >Edit Product</button>    
+        <button mat-raised-button type="button" (click) = 'resetForm(addForm)' color="primary" >Reset</button>          
+      </mat-card-actions>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+
+</mat-card>
+
+<mat-card class="example-card cardmargin">
+    <mat-card-header>
+      <mat-card-title> <span class="spancenter"> Manage All Products </span> </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+          
+          <div >
+            <table>
+              <thead>
+                  <tr class="borderstyle">
+                      <td > ID </td>
+                      <td > Name </td>
+                      <td > Price </td>
+                      <td > Quantity </td>
+                      <td > Code </td>
+                      <td > Description </td>
+                      <td > cat-id </td>
+                      <td > View </td>
+                      <td > Edit </td>
+                      <td > Delete </td>
+
+                    
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let row of allproducts; " class="borderstyle" >
+                      <td > {{row.id}} </td>
+                      <td > {{row.name}} </td>
+                      <td > {{row.price}}</td>
+                      <td > {{row.quantity}} </td>
+                      <td > {{row.code}} </td>
+                      <td > {{row.description}} </td>
+                      <td > {{row.catid}} </td>
+
+                      <td >
+                         <button  mat-raised-button type="button" color="primary" class="marginsty" (click) ='showItem(row.id)'>View</button>
+                      </td>
+                      <td>
+                          <button  mat-raised-button type="button"  color="primary" class="marginsty" (click) ='editproduct(row.id)'>Edit</button>
+
+                      </td>
+                      <td> 
+                        <button  mat-raised-button type="button" color="primary" class="marginsty" (click) ='deleteproduct(row.id)'>Delete</button>
+                      </td>
+                  </tr>
+              </tbody>
+      
+            </table>
+          
+          </div>
+      <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+
+
+  <mat-card class="example-card cardmargin" *ngIf="isActive?'':'hidden'">
+      <mat-card-header>
+        <mat-card-title> <span class="spancenter"> Selected Product Details </span> </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+            
+            <div >
+              <table  >
+                <thead>
+                    <tr class="borderstyle">
+                        <td > ID </td>
+                        <td > Name </td>
+                        <td > Price </td>
+                        <td > Quantity </td>
+                        <td > Code </td>
+                        <td > Description </td>
+                        <td > cat-id </td>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="borderstyle">
+                        <td > {{selectedObj.id}} </td>
+                        <td > {{selectedObj.name}} </td>
+                        <td > {{selectedObj.price}}</td>
+                        <td > {{selectedObj.quantity}} </td>
+                        <td > {{selectedObj.code}} </td>
+                        <td > {{selectedObj.description}} </td>
+                        <td > {{selectedObj.catid}} </td>
+
+                    </tr>
+                </tbody>
+        
+              </table>
+            
+            </div>
+        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+      </mat-card-content>
+    </mat-card>
